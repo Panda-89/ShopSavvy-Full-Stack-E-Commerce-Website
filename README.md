@@ -36,11 +36,11 @@ ShopSavvy is a fully functional and responsive e-commerce web application design
 
 ## 🛠️ Getting Started
 
-### 1. Clone the repository
+**1. Clone the repository**
 git clone https://github.com/Panda-89/ShopSavvy-Full-Stack-E-Commerce-Website.git
 cd ShopSavvy-Full-Stack-E-Commerce-Website
 
-**### 2. Install dependencies**
+**2. Install dependencies**
 npm install
 
 **3. Start the development server**
