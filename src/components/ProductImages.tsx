@@ -20,8 +20,8 @@ import Image from "next/image"
 //         url : "https://images.pexels.com/photos/31861760/pexels-photo-31861760/free-photo-of-young-girl-posing-in-blooming-garden.jpeg?auto=compress&cs=tinysrgb&w=600"
 //     }
 // ]
-interface ImageItem {
-    _id: string;
+export interface ImageItem {
+    _id?: string;
     image?: {
       url: string;
     };

@@ -3,6 +3,9 @@ import CustomizeProducts from "@/components/CustomizeProducts";
 import ProductImages from "@/components/ProductImages";
 import { wixClientServer } from "@/lib/wixClientServer";
 import { notFound } from "next/navigation";
+import type { products } from "@wix/stores";
+import { ImageItem } from "@/components/ProductImages";
+
 
 const SinglePage = async ({ params }: { params: { slug: string } }) => {
     const wixClient = await wixClientServer()
@@ -17,11 +20,20 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
   }
 
   const product = products.items[0];
+
+  const mediaItems: ImageItem[] = (product.media?.items ?? [])
+  .filter((item) => item._id !== undefined && item.image?.url !== undefined)
+  .map((item) => ({
+    _id: item._id!,
+    image: {
+      url: item.image!.url,
+    },
+  }));
     return (
         <div className="px-4 md:px-8 lg:px-16 xl:32 2xl:px-64 relative flex flex-col lg:flex-row gap-16">
             {/* Image */}
             <div className="w-full lg:w-1/2 lg:sticky top-20 h-max">
-                <ProductImages items={product.media?.items}/>
+                <ProductImages items={mediaItems} />
             </div>
             {/* Text */}
             <div className="w-full lg:w-1/2 flex flex-col gap-6">
@@ -59,9 +71,9 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
           )}
             
             <div className="h-[2px] bg-gray-100"/>
-            {product.additionalInfoSections?.map((section: any) => (
-          <div className="text-sm" key={section.title}>
-            <h4 className="font-medium mb-4">{section.title}</h4>
+            {product.additionalInfoSections?.map((section: products.AdditionalInfoSection, index:number) => (
+          <div className="text-sm" key={section.title ?? index}>
+            <h4 className="font-medium mb-4">{section.title ?? "No Title"}</h4>
             <p>{section.description}</p>
           </div>
         ))}

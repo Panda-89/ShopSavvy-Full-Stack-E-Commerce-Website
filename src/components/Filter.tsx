@@ -1,5 +1,4 @@
 "use client"
-import { products } from '@wix/stores';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import React from 'react'
