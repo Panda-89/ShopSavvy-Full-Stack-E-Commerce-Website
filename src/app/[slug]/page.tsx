@@ -21,19 +21,11 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
 
   const product = products.items[0];
 
-  const mediaItems: ImageItem[] = (product.media?.items ?? [])
-  .filter((item) => item._id !== undefined && item.image?.url !== undefined)
-  .map((item) => ({
-    _id: item._id!,
-    image: {
-      url: item.image!.url,
-    },
-  }));
     return (
         <div className="px-4 md:px-8 lg:px-16 xl:32 2xl:px-64 relative flex flex-col lg:flex-row gap-16">
             {/* Image */}
             <div className="w-full lg:w-1/2 lg:sticky top-20 h-max">
-                <ProductImages items={mediaItems} />
+                <ProductImages items={} />
             </div>
             {/* Text */}
             <div className="w-full lg:w-1/2 flex flex-col gap-6">
