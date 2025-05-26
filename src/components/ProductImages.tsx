@@ -20,8 +20,14 @@ import Image from "next/image"
 //         url : "https://images.pexels.com/photos/31861760/pexels-photo-31861760/free-photo-of-young-girl-posing-in-blooming-garden.jpeg?auto=compress&cs=tinysrgb&w=600"
 //     }
 // ]
+interface ImageItem {
+    _id: string;
+    image?: {
+      url: string;
+    };
+  }
 
-const ProductImages = ({items} : {items:any}) => {
+const ProductImages = ({items} : {items:ImageItem[]}) => {
 
     const [index,setIndex] = useState(0)
 
@@ -29,7 +35,7 @@ const ProductImages = ({items} : {items:any}) => {
     <div className=''>
         <div className='h-[500px] relative'>
             <Image 
-             src={items[index].image?.url}
+             src={items[index]?.image?.url || ""}
              alt=''
              fill
              sizes='vw'
@@ -37,10 +43,10 @@ const ProductImages = ({items} : {items:any}) => {
             />
         </div>
         <div className='flex justify-between gap-4 mt-8'>
-            {items.map((item:any, i:number) => (
+            {items.map((item, i:number) => (
                 <div className='w-1/4 h-32 relative gap-8 mt-8 cursor-pointer' key={item._id} onClick={() => setIndex(i)}>
                 <Image 
-                 src={item.image?.url} 
+                 src={item.image?.url || ""} 
                  alt='' 
                  fill 
                  sizes="30vw" 

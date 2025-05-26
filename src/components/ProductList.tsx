@@ -8,6 +8,16 @@ import Pagination from "./Pagination";
 
 const PRODUCT_PER_PAGE = 8;
 
+interface SearchParams {
+  name?: string;
+  type?: string;
+  min?: number;
+  max?: number;
+  page?: string;
+  cat?: string;
+}
+
+
 const ProductList = async ({
   categoryId,
   limit,
@@ -15,7 +25,7 @@ const ProductList = async ({
 }: {
   categoryId: string;
   limit?: number;
-  searchParams?: any;
+  searchParams?: SearchParams;
 }) => {
   const wixClient = await wixClientServer();
 
