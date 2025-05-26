@@ -11,7 +11,9 @@ let refreshToken
 try {
 const cookieStore = await cookies()
 refreshToken = JSON.parse(cookieStore.get("refreshToken")?.value || "{}")
-} catch (e) {}
+} catch (e) {
+  console.error(e)
+}
 
 const myWixClient = createClient({
   modules: {
